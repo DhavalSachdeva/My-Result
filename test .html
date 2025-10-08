@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+        }
+        .login-container, .loading-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            transition: all 0.3s ease;
+        }
+        .login-container h2, .loading-container h2 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #333;
+        }
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative; /* Added relative positioning for countdown timer */
+        }
+        .login-container input[type="password"] {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .login-container input[type="password"]:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+            outline: none;
+        }
+        .login-container input[type="submit"] {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: #fff;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .login-container input[type="submit"]:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .login-container input[type="submit"]:active {
+            transform: translateY(0);
+        }
+        ::placeholder {
+            text-align: center;
+            font-size: 16px;
+        }
+        .loading-container {
+            display: none;
+        }
+        .spinner {
+            margin: 20px auto;
+            width: 50px;
+            height: 50px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #007BFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .countdown-timer {
+            position: absolute;
+            bottom: -30px; /* Adjusted positioning */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #666;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form onsubmit="return checkPassword()">
+            <input type="password" id="password" placeholder="Enter password">
+            <input type="submit" value="Submit">
+            <div id="countdown" class="countdown-timer"></div>
+        </form>
+    </div>
+    <div class="loading-container">
+        <h2>Loading...</h2>
+        <div class="spinner"></div>
+        <p>Please wait, you will be redirected shortly.</p>
+    </div>
+
+    <script>
+        let attemptCount = 0;
+        const maxAttempts = 2;
+        let disableTimeout = null;
+
+        function checkPassword() {
+            const correctPassword = "dhaval2010"; // Replace with your desired password
+            const passwordInput = document.getElementById("password");
+            const password = passwordInput.value;
+
+            if (password === correctPassword) {
+                document.querySelector('.login-container').style.display = 'none';
+                document.querySelector('.loading-container').style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = "file:///D:/Making%20Web%20Pages/Result.html"; // Replace with your desired URL
+                }, 5000); // 5 seconds delay
+                return false;
+            } else {
+                attemptCount++;
+                const attemptsLeft = maxAttempts - attemptCount;
+                if (attemptsLeft <= 0) {
+                    passwordInput.disabled = true;
+                    passwordInput.setAttribute('placeholder', 'Your Textbox is Disabled');
+                    disableTimeout = setTimeout(() => {
+                        passwordInput.disabled = false;
+                        passwordInput.setAttribute('placeholder', 'Re-enter your Password Now');
+                        attemptCount = 0;
+                        updateCountdown(0); // Reset countdown display
+                    }, 20000); // 15 seconds delay
+                    updateCountdown(20); // Start countdown display
+                } else {
+                    alert(`Incorrect password. ${attemptsLeft} attempt(s) left.`);
+                }
+                passwordInput.value = ""; // Clear the password input box
+                return false;
+            }
+        }
+
+        function updateCountdown(seconds) {
+            const countdownElement = document.getElementById("countdown");
+            if (seconds > 0) {
+                countdownElement.innerText = `Textbox will enable in ${seconds} sec`;
+                setTimeout(() => {
+                    updateCountdown(seconds - 1);
+                }, 1000);
+            } else {
+                countdownElement.innerText = "";
+            }
+        }
+    </script>
+</body>
+</html>
