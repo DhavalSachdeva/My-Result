@@ -3,26 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Graph 7</title>
+    <style>
+        #spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            z-index: 1000;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+    </style>
+    <script>
+        function navigate(url) {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('spinner').style.display = 'block';
+            setTimeout(function() {
+                window.location.href = url;
+            }, 3000);
+        }
+    </script>
 </head>
 <body>
+    <div id="overlay"></div>
+    <div id="spinner"></div>
     <h1>My Graph</h1>
-
     <p align="right">
-        <button onclick='document.location.href="file:///D:/Making%20Web%20Pages/Class-7.html"'>Back</button>
-   </p>
-   <p align="right">
-       <button onclick='document.location.href="file:///D:/Making%20Web%20Pages/Result.html"'>Home</button>
-  </p>
-    
-   <img src="My Graph 7 img.png" alt="">
-
-    
-
+        <button onclick="navigate('Class-7.html')">Back</button>
+    </p>
+    <p align="right">
+        <button onclick="navigate('Result.html')">Home</button>
+    </p>
+    <img src="My Graph 7 img.png" alt="">
 </body>
 </html>
-
-
-
-
