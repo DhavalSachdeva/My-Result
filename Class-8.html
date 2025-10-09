@@ -15,7 +15,6 @@
             flex-direction: column;
             align-items: center;
         }
-
         /* Spinner overlay shared styles */
         #nav-spinner-overlay {
             display: none;
@@ -27,7 +26,6 @@
             justify-content: center;
             flex-direction: column;
         }
-
         #nav-spinner {
             width: 50px;
             height: 50px;
@@ -36,122 +34,118 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        /* Header with hamburger menu */
+        #spinner-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            flex-grow: 1;
+            text-align: center;
+            color: white;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin: 0;
+        }
+        .hamburger-menu {
+            background: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color 0.3s;
+        }
+        .hamburger-menu:hover {
+            background-color: #f0f0f0;
+        }
+        .menu-dropdown {
+            display: none;
+            flex-direction: column;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .menu-dropdown.active {
+            display: flex;
+        }
+        .menu-dropdown button {
+            padding: 15px 30px;
+            border: none;
+            background: white;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+        .menu-dropdown button:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 800px;
             width: 100%;
             box-sizing: border-box;
         }
-
-        h1 {
-            margin: 0;
-            color: white;
-            font-size: 32px;
-        }
-
-        .hamburger-menu {
-            cursor: pointer;
-            font-size: 30px;
-            background: none;
-            border: none;
-            color: white;
-        }
-
-        .menu-dropdown {
-            display: none;
-            position: fixed;
-            top: 60px;
-            right: 20px;
-            background: white;
-            border: 2px solid #007BFF;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-
-        .menu-dropdown.active {
-            display: block;
-        }
-
-        .menu-dropdown button {
-            display: block;
-            width: 100%;
-            margin: 8px 0;
-            padding: 10px;
-            cursor: pointer;
-            background: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        .menu-dropdown button:hover {
-            background: #0056b3;
-        }
-        
         .designer-button {
-            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-            border: none;
-            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 18px;
             color: white;
-            padding: 15px 35px;
-            font-size: 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            width: 200px;
-            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
         .designer-button:hover {
-            background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
-        }
-
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
-    <!-- Spinner Overlay for Navigation -->
+    <!-- Spinner Overlay -->
     <div id="nav-spinner-overlay">
         <div id="nav-spinner"></div>
-        <p id="spinner-text" style="margin-top: 20px; font-size: 18px; color: #333;">Loading...</p>
+        <div id="spinner-text">Loading...</div>
     </div>
-
     <!-- Header with Hamburger Menu -->
     <div class="header-container">
         <h1>Class 8 Results</h1>
         <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
     </div>
-
-    <div class="menu-dropdown" id="menuDropdown">
+    <div class="menu-dropdown" id="menu-dropdown">
         <button onclick="navigateWithSpinner('Result.html')">Home</button>
         <button onclick="navigateWithSpinner('Class-6.html')">Class 6</button>
         <button onclick="navigateWithSpinner('Class-7.html')">Class 7</button>
         <button onclick="navigateWithSpinner('Class-9.html')">Class 9</button>
         <button onclick="logout()">Logout</button>
     </div>
-
     <!-- Main Content -->
     <div class="button-container">
         <button class="designer-button" onclick="navigateWithSpinner('My Graph.html')">My Graph</button>
@@ -165,12 +159,10 @@
         <button class="designer-button" onclick="navigateWithSpinner('Term 1 RC.html')">Term 1 RC</button>
         <button class="designer-button" onclick="navigateWithSpinner('Other Competitions.html')">Other Competitions</button>
     </div>
-
     <script>
         function toggleMenu() {
-            document.getElementById('menuDropdown').classList.toggle('active');
+            document.getElementById('menu-dropdown').classList.toggle('active');
         }
-
         function navigateWithSpinner(url) {
             const overlay = document.getElementById('nav-spinner-overlay');
             const spinnerText = document.getElementById('spinner-text');
@@ -180,7 +172,6 @@
                 window.location.href = url;
             }, 3000);
         }
-
         function logout() {
             const overlay = document.getElementById('nav-spinner-overlay');
             const spinnerText = document.getElementById('spinner-text');
