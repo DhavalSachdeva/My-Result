@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class 7 Result</title>
     <style>
+        /* Spinner overlay shared styles */
+        #nav-spinner-overlay { display:none; position:fixed; inset:0; background:rgba(255,255,255,0.9); z-index:9999; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+        #nav-spinner { width:50px; height:50px; border:6px solid #f3f3f3; border-top:6px solid #007BFF; border-radius:50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
+        
+        /* Header with hamburger menu */
+        .header-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
+        .hamburger-menu { cursor: pointer; font-size: 30px; background: none; border: none; }
+        .menu-dropdown { display: none; position: fixed; top: 60px; right: 20px; background: white; border: 2px solid #007BFF; border-radius: 8px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; }
+        .menu-dropdown.active { display: block; }
+        .menu-dropdown button { display: block; width: 100%; margin: 8px 0; padding: 10px; cursor: pointer; background: #007BFF; color: white; border: none; border-radius: 4px; font-size: 16px; }
+        .menu-dropdown button:hover { background: #0056b3; }
+        
         .designer-button {
             background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
             border: none;
@@ -72,13 +85,54 @@
             height: 100%;
             opacity: 1;
         }
+        button { cursor:pointer; }
     </style>
+    <script>
+        // Global 3s navigation spinner
+        function navigateWithSpinner(url){
+            try{ var ov=document.getElementById('nav-spinner-overlay'); if(ov){ ov.style.display='flex'; } }catch(e){}
+            setTimeout(function(){ window.location.href = url; }, 3000);
+        }
+        
+        function goBack(){
+            // If history is available, go back; otherwise, go home to Result.html
+            if (window.history.length > 1) { window.history.back(); }
+            else { navigateWithSpinner('Result.html'); }
+        }
+        
+        function toggleMenu() {
+            var menu = document.getElementById('menu-dropdown');
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            } else {
+                menu.classList.add('active');
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Choose any one from below to Proceed</h1>
-    <p align="right">
-        <button onclick='document.location.href="index.html"'>Home</button>
-    </p>
+    <!-- Spinner overlay -->
+    <div id="nav-spinner-overlay"><div id="nav-spinner"></div><div style="margin-top:12px;color:#333;font-weight:600;">Loading...</div></div>
+    
+    <!-- Header with title and hamburger menu -->
+    <div class="header-container">
+        <h1>Choose any one from below to Proceed</h1>
+        <button class="hamburger-menu" onclick="toggleMenu()">&#9776;</button>
+    </div>
+    
+    <!-- Dropdown menu -->
+    <div id="menu-dropdown" class="menu-dropdown">
+        <button onclick="navigateWithSpinner('Result.html')">Home</button>
+        <button onclick="navigateWithSpinner('index.html')">Logout</button>
+    </div>
+    
+    <!-- Navigation buttons (Back, Home, Logout) -->
+    <div style="text-align:center; margin:10px 0;">
+        <button onclick="goBack()">Back</button>
+        <button onclick="navigateWithSpinner('Result.html')">Home</button>
+        <button onclick="navigateWithSpinner('index.html')">Logout</button>
+    </div>
+    
     <br>
     <a href="Compare result 7.html" target="_blank" class="designer-button designer-button5">Compare Result</a>
     <br>
