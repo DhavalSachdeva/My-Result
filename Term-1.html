@@ -1,136 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Let's See My Marks</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Term-1 Results</title>
     <style>
-        table,th,td {
-            border:2px blue solid;
-            padding: 5px;
-            text-align: center;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        #spinner {
-            display: none;
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #A8E6CF 0%, #56AB2F 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .hamburger-container {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #3498db;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
+            top: 20px;
+            left: 20px;
             z-index: 1000;
         }
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        .hamburger {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: all 0.3s ease;
         }
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .menu-dropdown {
+            position: absolute;
+            top: 60px;
             left: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .menu-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .menu-dropdown button {
             width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.3);
-            z-index: 999;
+            padding: 15px 20px;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            transition: background 0.3s ease;
+            border-bottom: 1px solid #eee;
+        }
+        .menu-dropdown button:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+        .menu-dropdown button:last-child {
+            border-bottom: none;
+            border-radius: 0 0 10px 10px;
+        }
+        .menu-dropdown button:hover {
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin: 60px 0 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 80%;
+            max-width: 600px;
+        }
+        th, td {
+            border: 2px solid #56AB2F;
+            padding: 15px;
+            text-align: center;
+        }
+        th {
+            background: #56AB2F;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
         }
     </style>
-    <script>
-        function navigate(url) {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('spinner').style.display = 'block';
-            setTimeout(function() {
-                window.location.href = url;
-            }, 3000);
-        }
-    </script>
 </head>
 <body>
-    <div id="overlay"></div>
-    <div id="spinner"></div>
-    <h1>TERM-1</h1>
-    <p align="right">
-        <button onclick="navigate('Class-6.html')">Back</button>
-    </p>
-    <p align="right">
-        <button onclick="navigate('Result.html')">Home</button>
-    </p>
+    <div class="hamburger-container">
+        <button class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="menu-dropdown" id="menu-dropdown">
+            <button onclick="navigateTo('Class-6.html')">Back</button>
+            <button onclick="navigateTo('Result.html')">Home</button>
+            <button onclick="navigateTo('index.html')">Logout</button>
+        </div>
+    </div>
+    
+    <h1>Term-1 Results</h1>
     
     <table>
-    <tr>
-        <th>Name</th>
-        <th>Class</th>
-        <th>Subject</th>
-        <th>Date</th>
-        <th>Day</th>
-        <th>Time</th>
-        <th>Marks</th>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>Hindi</td>
-        <td>17-09-2021</td>
-        <td>Friday</td>
-        <td>9:00 to 11:00</td>
-        <td>59 of 60</td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>Science</td>
-        <td>20-09-2021</td>
-        <td>Monday</td>
-        <td>9:00 to 11:00</td>
-        <td>54 of 60</td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>SST</td>
-        <td>22-09-2021</td>
-        <td>Wednesday</td>
-        <td>9:00 to 11:00</td>
-        <td>49 of 60</td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>English</td>
-        <td>24-09-2021</td>
-        <td>Thursday</td>
-        <td>9:00 to 11:00</td>
-        <td>54 of 60</td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>Mathematics</td>
-        <td>27-09-2021</td>
-        <td>Monday</td>
-        <td>9:00 to 11:00</td>
-        <td>39 of 60</td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>AR</td>
-        <td>29-09-2021</td>
-        <td>Tuesday</td>
-        <td>9:00 to 11:00</td>
-        <td>50 of 60</td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>ICT</td>
-        <td>01-10-2021</td>
-        <td>Friday</td>
-        <td>9:00 to 11:00</td>
-        <td>58 of 60</td>
-    </tr>
+        <tr>
+            <th>Subject</th>
+            <th>Total Marks</th>
+            <th>Marks Obtained</th>
+        </tr>
+        <tr>
+            <td>English</td>
+            <td>100</td>
+            <td>88</td>
+        </tr>
+        <tr>
+            <td>Mathematics</td>
+            <td>100</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td>Science</td>
+            <td>100</td>
+            <td>86</td>
+        </tr>
+        <tr>
+            <td>Social Studies</td>
+            <td>100</td>
+            <td>85</td>
+        </tr>
+        <tr>
+            <td>Hindi</td>
+            <td>100</td>
+            <td>89</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>500</th>
+            <th>438</th>
+        </tr>
+        <tr>
+            <th>Percentage</th>
+            <th colspan="2">87.6%</th>
+        </tr>
     </table>
+    
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu-dropdown').classList.toggle('active');
+        }
+        
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>
