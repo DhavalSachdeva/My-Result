@@ -6,7 +6,7 @@
   <title>Class: 6</title>
   <style>
     /* Spinner overlay shared styles */
-    #nav-spinner-overlay { display:none; position:fixed; inset:0; background:rgba(255,255,255,0.9); z-index:9999; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+    #nav-spinner-overlay { display:none; position:fixed; inset:0; background:rgba(255,255,255,0.9); z-index:9999; align-items:center; justify-content:center; flex-direction:column; }
     #nav-spinner { width:50px; height:50px; border:6px solid #f3f3f3; border-top:6px solid #007BFF; border-radius:50%; animation: spin 1s linear infinite; }
     @keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
     
@@ -27,19 +27,9 @@
       setTimeout(function(){ window.location.href = url; }, 3000);
     }
     
-    function goBack(){
-      // If history is available, go back; otherwise, go home to Result.html
-      if (window.history.length > 1) { window.history.back(); }
-      else { navigateWithSpinner('Result.html'); }
-    }
-    
     function toggleMenu() {
       var menu = document.getElementById('menu-dropdown');
-      if (menu.classList.contains('active')) {
-        menu.classList.remove('active');
-      } else {
-        menu.classList.add('active');
-      }
+      menu.classList.toggle('active');
     }
   </script>
 </head>
@@ -50,18 +40,11 @@
   <!-- Header with title and hamburger menu -->
   <div class="header-container">
     <h1>Let's See My Marks</h1>
-    <button class="hamburger-menu" onclick="toggleMenu()">&#9776;</button>
+    <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
   </div>
   
   <!-- Dropdown menu -->
   <div id="menu-dropdown" class="menu-dropdown">
-    <button onclick="navigateWithSpinner('Result.html')">Home</button>
-    <button onclick="navigateWithSpinner('index.html')">Logout</button>
-  </div>
-  
-  <!-- Navigation buttons (Back, Home, Logout) -->
-  <div style="text-align:center; margin:10px 0;">
-    <button onclick="goBack()">Back</button>
     <button onclick="navigateWithSpinner('Result.html')">Home</button>
     <button onclick="navigateWithSpinner('index.html')">Logout</button>
   </div>
