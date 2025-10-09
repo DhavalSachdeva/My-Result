@@ -1,130 +1,181 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Let's See My Marks</title>
-    </head>
-    <body>
-        <h1>SAT-4</h1>
-
-
-        <p align="right">
-            <button onclick='document.location.href="file:///D:/Making%20Web%20Pages/Class-6.html"'>Back</button>
-       </p>
-       <p align="right">
-           <button onclick='document.location.href="file:///D:/Making%20Web%20Pages/Result.html"'>Home</button>
-      </p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAT-4 Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #FFA07A 0%, #FA8072 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .hamburger-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .hamburger {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: all 0.3s ease;
+        }
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .menu-dropdown {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .menu-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .menu-dropdown button {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            transition: background 0.3s ease;
+            border-bottom: 1px solid #eee;
+        }
+        .menu-dropdown button:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+        .menu-dropdown button:last-child {
+            border-bottom: none;
+            border-radius: 0 0 10px 10px;
+        }
+        .menu-dropdown button:hover {
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin: 60px 0 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 80%;
+            max-width: 600px;
+        }
+        th, td {
+            border: 2px solid #FFA07A;
+            padding: 15px;
+            text-align: center;
+        }
+        th {
+            background: #FFA07A;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="hamburger-container">
+        <button class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="menu-dropdown" id="menu-dropdown">
+            <button onclick="navigateTo('Class-6.html')">Back</button>
+            <button onclick="navigateTo('Result.html')">Home</button>
+            <button onclick="navigateTo('index.html')">Logout</button>
+        </div>
+    </div>
     
-
-
-
-
-
-
-<style>
-
-    table,th,td{
-    
-        border:2px blue solid  ;
-    
-        padding: 5px  ;
-    
-        text-align: center  ;
-
-        
-    }
-
-    
-
-    
-        </style>
+    <h1>SAT-4 Results</h1>
     
     <table>
-    
-    <tr>
-        <th>Name</th>
-        <th>Class</th>
-        <th>Subject</th>
-        <th>Date</th>
-        <th>Day</th>
-        <th>Time</th>
-        <th>Marks</th>
-        <th>Answer Key</th>
-    </tr>
-    
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>ICT</td>
-        <td>10 jan 2022</td>
-        <td>Monday</td>
-        <td>8:10 to 8:50</td>
-        <td>N/A</td>
-        <td> Unavailabe </td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>Science</td>
-        <td>11 jan 2022</td>
-        <td>Tuesday</td>
-        <td>8:10 to 8:50</td>
-        <td>16/20</td>
-        <td> <button onclick='document.location.href="https://docs.google.com/forms/d/e/1FAIpQLScggYJIuc3uycJO30DIFst_K-oluo3rN2AvwrJyi68ChwT09Q/viewscore?vc=0&c=0&w=1&flr=0&viewscore=AE0zAgCy0kMjv50lKN76EnjvO48Yz_Mq7yaTh8FQ4uNnaFvSh7zTJ_t_aZgYjhRf2L1Pkx8"'>Click To See Marks</button></td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>AR</td>
-        <td>12 jan 2022</td>
-        <td>Wednesday</td>
-        <td>10:00 to 10:40</td>
-        <td>19/20</td>
-        <td> <button onclick='document.location.href="https://docs.google.com/forms/d/e/1FAIpQLSfTA5ed5QeasPWW1SvPzLeZXlaCUS0a-KLcRpc2O09WKm8dRw/viewscore?vc=0&c=0&w=1&flr=0&viewscore=AE0zAgAoZMWN7KtPVPXhPM6ghI4xhzAPXVK-9mxUdOLt2MkLLKk26S3lEAuRQln3b4FYEH0"'>Click To See Marks</button></td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>Hindi</td>
-        <td>13 jn 2022</td>
-        <td>Thursday</td>
-        <td>1:40 TO 2:20</td>
-        <td>18/20</td>
-        <td> <button onclick='document.location.href="https://docs.google.com/forms/d/e/1FAIpQLSfTNiTeO_TJ4xyM6HMyWvCb_AWEkCYPgASaEF_ZVEP-rN8lkw/viewscore?vc=0&c=0&w=1&flr=0&viewscore=AE0zAgDsDeXS_IZc9F-CcIsR0T_kTIBN1S13mwdruRtjVfPm7DZQdD390wK_tpOlBQxTC3U"'>Click To See Marks</button></td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>Mathematics</td>
-        <td>17 jan 2022</td>
-        <td>Monday</td>
-        <td>11:40 to 12:20</td>
-        <td>17/20</td>
-        <td> <button onclick='document.location.href="https://docs.google.com/forms/d/e/1FAIpQLSdsQEfrVtsBCDT2jXGeDhwU3j6K4opmiLOY9jZ3YhCRs6RR_A/viewscore?vc=0&c=0&w=1&flr=0&viewscore=AE0zAgAwQLbf12BBYJJUH1QFbUFwM2R_sKT12-zQQp7BXrlRvHeLVRqKBgXYcYdMXM9uKkI"'>Click To See Marks</button></td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>English</td>
-        <td>18 jan 2022</td>
-        <td>Tuesday</td>
-        <td>9:00 to 9:40</td>
-        <td>18/20</td>
-        <td> <button onclick='document.location.href="https://docs.google.com/forms/d/e/1FAIpQLScHuBgla9R1ocGc384g4RK8YR2DaEnKOfTHRDRLq85HxT2gOA/viewscore?vc=0&c=0&w=1&flr=0&viewscore=AE0zAgAcFPKNUCf5Mv1sfRV-H-Uk1Dq9Im80nkzQqqeBH2wiEKli8OwnW93zQqgd4vpAWSo"'>Click To See Marks</button></td>
-    </tr>
-    <tr>
-        <td>Dhaval</td>
-        <td>6</td>
-        <td>SST</td>
-        <td>19 jan 2022</td>
-        <td>Wednesday</td>
-        <td>10:00 to 10:40</td>
-        <td>19/20</td>
-        <td> <button onclick='document.location.href="https://docs.google.com/forms/d/e/1FAIpQLSfYP6BHB3pg7v28KdcW57JvXI-UdsWMR_xNMcfiguZfd_gFnQ/viewscore?vc=0&c=0&w=1&flr=0&viewscore=AE0zAgCdzuJkdDRMhuEXYI4ULtMijysZEKx5IXJWFzfJ2fClPf6_3wPo6xwog9rrI2L9_kI"'>Click To See Marks</button></td>
-    </tr>
-
-    
-    
-    
+        <tr>
+            <th>Subject</th>
+            <th>Total Marks</th>
+            <th>Marks Obtained</th>
+        </tr>
+        <tr>
+            <td>English</td>
+            <td>20</td>
+            <td>18</td>
+        </tr>
+        <tr>
+            <td>Mathematics</td>
+            <td>20</td>
+            <td>18</td>
+        </tr>
+        <tr>
+            <td>Science</td>
+            <td>20</td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>Social Studies</td>
+            <td>20</td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>Hindi</td>
+            <td>20</td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>100</th>
+            <th>87</th>
+        </tr>
     </table>
+    
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu-dropdown').classList.toggle('active');
+        }
+        
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>
