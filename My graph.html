@@ -172,52 +172,8 @@
         </div>
     </div>
     
-    <canvas id="myChart" width="800" height="400"></canvas>
+    <div style="text-align: center;">
+  <img src="My Graph.png" alt="Centered Image">
+</div>
     
-    <script>
-        function toggleMenu() {
-            document.getElementById('menu-dropdown').classList.toggle('active');
-        }
-        
-        function navigateTo(url) {
-            showSpinner();
-            setTimeout(function() {
-                window.location.href = url;
-            }, 2000);
-        }
-        
-        function showSpinner() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('spinner').style.display = 'block';
-        }
-        
-        window.onload = function() {
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['SAT-1', 'SAT-2', 'Term-1', 'SAT-3', 'SAT-4', 'Term-2'],
-                    datasets: [{
-                        label: 'My Results',
-                        data: [85, 90, 88, 92, 87, 95],
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 2,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
-        };
-    </script>
-</body>
 </html>
