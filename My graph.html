@@ -172,8 +172,21 @@
         </div>
     </div>
     
-    <div style="text-align: center;">
-  <img src="My Graph.png" alt="Centered Image">
-</div>
+    <style>
+    .container {
+      display: flex;
+      justify-content: center;  /* Horizontal center */
+      align-items: center;      /* Vertical center */
+      height: 100vh;            /* Full viewport height */
+    }
+    .container img {
+      max-width: 80vw;
+      max-height: 80vh;
+    }
+  </style>
+
+  <div class="container">
+    <img src="My Graph.png" alt="Centered Image">
+  </div>
     
 </html>
