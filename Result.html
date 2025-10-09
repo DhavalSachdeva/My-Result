@@ -12,7 +12,6 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
-
         /* Hamburger Menu Styles */
         .hamburger-menu {
             position: fixed;
@@ -20,7 +19,6 @@
             right: 20px;
             z-index: 1000;
         }
-
         .hamburger-icon {
             background: white;
             border: none;
@@ -29,114 +27,113 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-
         .hamburger-icon span {
             display: block;
             width: 25px;
             height: 3px;
-            background: #333;
+            background-color: #333;
             margin: 5px 0;
-            transition: 0.3s;
         }
-
-        .menu-content {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 0;
+        .menu-dropdown {
+            position: fixed;
+            top: 70px;
+            right: 20px;
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             border-radius: 5px;
-            min-width: 150px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 999;
         }
-
-        .menu-content.show {
-            display: block;
+        .menu-dropdown.show {
+            display: flex;
         }
-
-        .menu-content button {
-            display: block;
-            width: 100%;
-            padding: 15px 20px;
+        .menu-dropdown button {
+            padding: 15px 30px;
             border: none;
             background: white;
+            color: #333;
             text-align: left;
             cursor: pointer;
+            transition: background-color 0.3s;
             font-size: 16px;
-            transition: background 0.3s;
         }
-
-        .menu-content button:hover {
-            background: #f0f0f0;
-        }
-
-        .designer-button {
-            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-            border: none;
-            border-radius: 25px;
+        .menu-dropdown button:hover {
+            background-color: #007BFF;
             color: white;
-            padding: 15px 35px;
-            font-size: 24px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            width: 200px;
-            margin-bottom: 20px;
         }
-
-        .designer-button:hover {
-            background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
-        }
-
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 80vh;
-        }
-
-        /* Loading Screen */
-        #loading-screen {
+        /* Loading overlay styles */
+        #loading-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             z-index: 9999;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
-
-        .spinner {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
+        #loading-spinner {
             width: 50px;
             height: 50px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #007BFF;
+            border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         #loading-text {
-            color: white;
             margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        /* Center heading style */
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5em;
+            margin-top: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        /* Button Container */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 40px;
+        }
+        .class-button {
+            padding: 15px 50px;
             font-size: 20px;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            min-width: 250px;
+        }
+        .class-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div id="loading-spinner"></div>
+        <div id="loading-text">Loading...</div>
+    </div>
     <!-- Hamburger Menu -->
     <div class="hamburger-menu">
         <button class="hamburger-icon" onclick="toggleMenu()">
@@ -144,55 +141,67 @@
             <span></span>
             <span></span>
         </button>
-        <div class="menu-content" id="menuContent">
-            <button onclick="logout()">Logout</button>
-        </div>
     </div>
-
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="spinner"></div>
-        <div id="loading-text">Loading...</div>
+    <div class="menu-dropdown" id="menu-dropdown">
+        <button onclick="logout()">Logout</button>
     </div>
-
-    <!-- Main Content -->
+    <!-- Page Heading -->
+    <h1>Select class to proceed!</h1>
+    <!-- Button Container -->
     <div class="button-container">
-        <button class="designer-button" onclick="navigateTo('Class-6.html')">Class 6</button>
-        <button class="designer-button" onclick="navigateTo('Class-7.html')">Class 7</button>
-        <button class="designer-button" onclick="navigateTo('Class-8.html')">Class 8</button>
-        <button class="designer-button" onclick="navigateTo('Class-9.html')">Class 9</button>
+        <button class="class-button" onclick="navigateWithSpinner('Class-6.html')">Class 6</button>
+        <button class="class-button" onclick="navigateWithSpinner('Class-7.html')">Class 7</button>
+        <button class="class-button" onclick="navigateWithSpinner('Class-8.html')">Class 8</button>
+        <button class="class-button" onclick="navigateWithSpinner('Class-9.html')">Class 9</button>
     </div>
-
     <script>
+        let isNavigating = false;
+
         function toggleMenu() {
-            document.getElementById('menuContent').classList.toggle('show');
+            document.getElementById('menu-dropdown').classList.toggle('show');
         }
 
-        // Close menu when clicking outside
-        window.onclick = function(event) {
-            if (!event.target.matches('.hamburger-icon') && !event.target.matches('.hamburger-icon span')) {
-                var menu = document.getElementById('menuContent');
-                if (menu.classList.contains('show')) {
-                    menu.classList.remove('show');
-                }
-            }
-        }
-
-        function navigateTo(page) {
-            document.getElementById('loading-screen').style.display = 'flex';
-            document.getElementById('loading-text').textContent = 'Loading...';
-            setTimeout(function() {
-                window.location.href = page;
+        function navigateWithSpinner(url) {
+            if (isNavigating) return;
+            isNavigating = true;
+            const overlay = document.getElementById('loading-overlay');
+            const loadingText = document.getElementById('loading-text');
+            loadingText.textContent = 'Loading...';
+            overlay.style.display = 'flex';
+            setTimeout(() => {
+                window.location.href = url;
             }, 3000);
         }
 
         function logout() {
-            document.getElementById('loading-screen').style.display = 'flex';
-            document.getElementById('loading-text').textContent = 'Logging out...';
-            setTimeout(function() {
+            if (isNavigating) return;
+            isNavigating = true;
+            const overlay = document.getElementById('loading-overlay');
+            const loadingText = document.getElementById('loading-text');
+            loadingText.textContent = 'Logging out...';
+            overlay.style.display = 'flex';
+            setTimeout(() => {
                 window.location.href = 'index.html';
             }, 3000);
         }
+
+        // Handle browser back button navigation
+        window.addEventListener('pageshow', function(event) {
+            // If the page is being shown from the bfcache (back button)
+            if (event.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+                // Show loading spinner
+                const overlay = document.getElementById('loading-overlay');
+                const loadingText = document.getElementById('loading-text');
+                loadingText.textContent = 'Loading...';
+                overlay.style.display = 'flex';
+                
+                // Hide spinner after 3 seconds
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    isNavigating = false;
+                }, 3000);
+            }
+        });
     </script>
 </body>
 </html>
