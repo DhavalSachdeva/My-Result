@@ -159,8 +159,10 @@
     </div>
     
     <div class="menu-dropdown" id="menu-dropdown">
-        <button onclick="goBack()">Back</button>
         <button onclick="navigateWithSpinner('Result.html')">Home</button>
+        <button onclick="navigateWithSpinner('Class-7.html')">Class 7</button>
+        <button onclick="navigateWithSpinner('Class-8.html')">Class 8</button>
+        <button onclick="navigateWithSpinner('Class-9.html')">Class 9</button>
         <button onclick="logout()">Logout</button>
     </div>
     
@@ -197,10 +199,6 @@
             setTimeout(() => {
                 window.location.href = url;
             }, 3000);
-        }
-        
-        function goBack() {
-            window.location.href = 'Results.html';
         }
         
         function logout() {
