@@ -11,12 +11,103 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
+        
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            border: none;
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 6px auto;
+            transition: 0.3s;
+        }
+        
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 250px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 80px 20px 20px;
+        }
+        
+        .menu.active {
+            right: 0;
+        }
+        
+        .menu a {
+            display: block;
+            padding: 15px 0;
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            border-bottom: 1px solid #eee;
+            transition: color 0.3s;
+        }
+        
+        .menu a:hover {
+            color: #667eea;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin: 20px 0 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .graph-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .chart-area {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #f0f8ff, #e6f3ff);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #666;
+            border: 2px dashed #ccc;
+            position: relative;
+        }
+        
+        .chart-placeholder {
+            text-align: center;
+            font-style: italic;
+        }
+        
         #spinner {
             display: none;
             position: fixed;
@@ -31,10 +122,12 @@
             animation: spin 1s linear infinite;
             z-index: 1000;
         }
+        
         @keyframes spin {
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
+        
         #overlay {
             display: none;
             position: fixed;
@@ -45,148 +138,58 @@
             background-color: rgba(0,0,0,0.3);
             z-index: 999;
         }
-        .hamburger-container {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-        .hamburger {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            transition: all 0.3s ease;
-        }
-        .hamburger:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-        .menu-dropdown {
-            position: absolute;
-            top: 60px;
-            left: 0;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-        .menu-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .menu-dropdown button {
-            width: 100%;
-            padding: 15px 20px;
-            border: none;
-            background: none;
-            text-align: left;
-            cursor: pointer;
-            font-size: 16px;
-            color: #333;
-            transition: background 0.3s ease;
-            border-bottom: 1px solid #eee;
-        }
-        .menu-dropdown button:first-child {
-            border-radius: 10px 10px 0 0;
-        }
-        .menu-dropdown button:last-child {
-            border-bottom: none;
-            border-radius: 0 0 10px 10px;
-        }
-        .menu-dropdown button:hover {
-            background: #f5f5f5;
-        }
-        .button-container {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .button-container button {
-            width: 200px;
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        .button-container button:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        }
-        canvas {
-            border: 2px solid white;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            display: block;
-            margin: 80px auto 0;
-            max-width: 90%;
-        }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div id="overlay"></div>
     <div id="spinner"></div>
     
-    <div class="hamburger-container">
-        <button class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="menu-dropdown" id="menu-dropdown">
-            <button onclick="navigateTo('Class-6.html')">Back</button>
-            <button onclick="navigateTo('Result.html')">Home</button>
-            <button onclick="navigateTo('index.html')">Logout</button>
+    <button class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <div class="menu" id="menu">
+        <a href="#" onclick="navigate('Class-6.html')">Back</a>
+        <a href="#" onclick="navigate('Result.html')">Home</a>
+        <a href="#" onclick="navigate('index.html')">Logout</a>
+    </div>
+    
+    <h1>My Graph</h1>
+    
+    <div class="graph-container">
+        <div class="chart-area">
+            <div class="chart-placeholder">
+                📊 Graph/Chart Data Will Be Displayed Here<br>
+                <small>Original graph content to be restored</small>
+            </div>
         </div>
     </div>
     
-    <style>
-    .container {
-      display: flex;
-      justify-content: center;  /* Horizontal center */
-      align-items: center;      /* Vertical center */
-      height: 100vh;            /* Full viewport height */
-    }
-    .container img {
-      max-width: 80vw;
-      max-height: 80vh;
-    }
-  </style>
-
-  <div class="container">
-    <img src="My Graph.png" alt="Centered Image">
-  </div>
-    
+    <script>
+        function navigate(url) {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('spinner').style.display = 'block';
+            setTimeout(function() {
+                window.location.href = url;
+            }, 1500);
+        }
+        
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('menu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
 </html>
