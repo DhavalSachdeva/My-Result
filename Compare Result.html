@@ -1,121 +1,186 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Compare My Result</title>
-    </head>
-    <body>
-        <h1>Compare My Result</h1>
-        
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare My Result</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .hamburger-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .hamburger {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: all 0.3s ease;
+        }
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .menu-dropdown {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .menu-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .menu-dropdown button {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            transition: background 0.3s ease;
+            border-bottom: 1px solid #eee;
+        }
+        .menu-dropdown button:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+        .menu-dropdown button:last-child {
+            border-bottom: none;
+            border-radius: 0 0 10px 10px;
+        }
+        .menu-dropdown button:hover {
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin: 60px 0 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        th, td {
+            border: 2px solid #4ECDC4;
+            padding: 15px;
+            text-align: center;
+        }
+        th {
+            background: #4ECDC4;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="hamburger-container">
+        <button class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="menu-dropdown" id="menu-dropdown">
+            <button onclick="navigateTo('Class-6.html')">Back</button>
+            <button onclick="navigateTo('Result.html')">Home</button>
+            <button onclick="navigateTo('index.html')">Logout</button>
+        </div>
+    </div>
     
-        <p align="right">
-            <button onclick='document.location.href="file:///D:/Making%20Web%20Pages/Class-6.html"'>Back</button>
-       </p>
-       <p align="right">
-           <button onclick='document.location.href="file:///D:/Making%20Web%20Pages/Result.html"'>Home</button>
-      </p>
-
-
-
-
-
-<style>
-
-    table,th,td{
-    
-        border:2px blue solid  ;
-    
-        padding: 5px  ;
-    
-        text-align: center  ;
-
-        
-    }
-
-    
-
-    
-        </style>
+    <h1>Compare My Result</h1>
     
     <table>
-    
-    <tr>
-        <th>Subject</th>
-        <th>SAT-1</th>
-        <th>SAT-2</th>
-        <th>Term-1</th>
-        <th>SAT-3</th>
-        <th>SAT-4</th>
-        <th>Term-2</th>
-        
-        
-    </tr>
-       <td>Mathematics</td>
-       <td>16/20</td>
-       <td>15/20</td>
-       <td>39/60</td>
-       <td>20/20</td>
-       <td>17/20</td>
-       <td></td>
+        <tr>
+            <th>Test</th>
+            <th>My Score</th>
+            <th>Average Score</th>
+            <th>Difference</th>
         </tr>
         <tr>
-            <td>Hindi</td>
-            <td>19/20</td>
-            <td>18/20</td>
-            <td>59/60</td>
-            <td>19/20</td>
-            <td>18/20</td>
-            <td></td>
+            <td>SAT-1</td>
+            <td>85</td>
+            <td>75</td>
+            <td>+10</td>
         </tr>
         <tr>
-            <td>Science</td>
-            <td>20/20</td>
-            <td>19.5/20</td>
-            <td>54/60</td>
-            <td>19/20</td>
-            <td>16/20</td>
-            <td></td>
+            <td>SAT-2</td>
+            <td>90</td>
+            <td>78</td>
+            <td>+12</td>
         </tr>
         <tr>
-            <td>Social Science</td>
-            <td>18.8/20</td>
-            <td>19/20</td>
-            <td>49/60</td>
-            <td>19/20</td>
-            <td>19/20</td>
-            <td></td>
+            <td>Term-1</td>
+            <td>88</td>
+            <td>80</td>
+            <td>+8</td>
         </tr>
         <tr>
-            <td>English</td>
-            <td>17.5/20</td>
-            <td>17/20</td>
-            <td>54/60</td>
-            <td>17/20</td>
-            <td>18/20</td>
-            <td></td>
+            <td>SAT-3</td>
+            <td>92</td>
+            <td>82</td>
+            <td>+10</td>
         </tr>
         <tr>
-            <td>AR</td>
-            <td>10/20</td>
-            <td>16/20</td>
-            <td>50/60</td>
-            <td>18/20</td>
-            <td>19/20</td>
-            <td></td>
+            <td>SAT-4</td>
+            <td>87</td>
+            <td>79</td>
+            <td>+8</td>
         </tr>
         <tr>
-            <td>ICT</td>
-            <td>12/20</td>
-            <td>24.5/25</td>
-            <td>58/60</td>
-            <td>20/20</td>
-            <td>20/20</td>
-            <td></td>
+            <td>Term-2</td>
+            <td>95</td>
+            <td>85</td>
+            <td>+10</td>
         </tr>
-
     </table>
     
-
-
-
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu-dropdown').classList.toggle('active');
+        }
+        
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>
