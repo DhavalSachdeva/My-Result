@@ -48,138 +48,131 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        h1 {
-            color: white;
-            text-align: center;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            flex: 1;
-        }
-        .hamburger-container {
+        .hamburger-menu {
             position: fixed;
             top: 20px;
-            left: 20px;
+            right: 20px;
             z-index: 1000;
         }
-        .hamburger {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
+        .hamburger-icon {
+            width: 35px;
+            height: 30px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            transition: all 0.3s ease;
+            justify-content: space-between;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 0;
         }
-        .hamburger:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        .hamburger span {
-            width: 25px;
-            height: 3px;
+        .hamburger-icon span {
+            width: 100%;
+            height: 4px;
             background: white;
-            border-radius: 3px;
-            transition: all 0.3s ease;
+            border-radius: 2px;
+            transition: 0.3s;
         }
         .menu-dropdown {
             position: absolute;
-            top: 60px;
-            left: 0;
-            background: white;
+            top: 50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
+            padding: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            display: none;
+            min-width: 150px;
         }
         .menu-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            display: block;
         }
         .menu-dropdown button {
+            display: block;
             width: 100%;
-            padding: 15px 20px;
+            padding: 12px 20px;
+            margin: 5px 0;
             border: none;
-            background: none;
-            text-align: left;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 16px;
-            color: #333;
-            transition: background 0.3s ease;
-            border-bottom: 1px solid #eee;
-        }
-        .menu-dropdown button:first-child {
-            border-radius: 10px 10px 0 0;
-        }
-        .menu-dropdown button:last-child {
-            border-bottom: none;
-            border-radius: 0 0 10px 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .menu-dropdown button:hover {
-            background: #f5f5f5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         .button-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         .designer-button {
-            padding: 20px 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            padding: 30px;
             border: none;
             border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            background: linear-gradient(45deg, #FF8C42 0%, #FF3CAC 100%);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
         .designer-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
+        .designer-button:active {
+            transform: translateY(-2px);
+        }
+        .designer-button:nth-child(1) { background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%); }
+        .designer-button:nth-child(2) { background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%); }
+        .designer-button:nth-child(3) { background: linear-gradient(135deg, #F2994A 0%, #F2C94C 100%); }
+        .designer-button:nth-child(4) { background: linear-gradient(135deg, #56CCF2 0%, #2F80ED 100%); }
+        .designer-button:nth-child(5) { background: linear-gradient(135deg, #A8E6CF 0%, #56AB2F 100%); }
+        .designer-button:nth-child(6) { background: linear-gradient(135deg, #FF6B9D 0%, #C06C84 100%); }
+        .designer-button:nth-child(7) { background: linear-gradient(135deg, #FFA07A 0%, #FA8072 100%); }
+        .designer-button:nth-child(8) { background: linear-gradient(135deg, #89F7FE 0%, #66A6FF 100%); }
+        .designer-button:nth-child(9) { background: linear-gradient(135deg, #FDBB2D 0%, #22C1C3 100%); }
+        .designer-button:nth-child(10) { background: linear-gradient(135deg, #EE9CA7 0%, #FFDDE1 100%); }
     </style>
 </head>
 <body>
+    <!-- Navigation Spinner Overlay -->
     <div id="nav-spinner-overlay">
         <div id="nav-spinner"></div>
         <div id="spinner-text">Loading...</div>
     </div>
-    <div class="hamburger-container">
-        <button class="hamburger" onclick="toggleMenu()">
+    
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu">
+        <button class="hamburger-icon" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </button>
         <div class="menu-dropdown" id="menu-dropdown">
-            <button onclick="navigateWithSpinner('Result.html')">Home</button>
+            <button onclick="navigateWithSpinner('Main.html')">Back</button>
+            <button onclick="navigateWithSpinner('Home.html')">Home</button>
             <button onclick="logout()">Logout</button>
         </div>
     </div>
-    <div class="header-container">
-        <h1>Class 6 Results</h1>
-    </div>
-    <div class="button-container">
-        <button class="designer-button" onclick="navigateWithSpinner('Class-7.html')">Class 7</button>
-        <button class="designer-button" onclick="navigateWithSpinner('Class-8.html')">Class 8</button>
-        <button class="designer-button" onclick="navigateWithSpinner('Class-9.html')">Class 9</button>
-        <button class="designer-button" onclick="logout()">Logout</button>
-    </div>
+    
+    <h1>Class 6 Results</h1>
     
     <!-- Main Content -->
     <div class="button-container">
