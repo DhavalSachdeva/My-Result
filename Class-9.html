@@ -15,7 +15,6 @@
             flex-direction: column;
             align-items: center;
         }
-
         /* Spinner overlay shared styles */
         #nav-spinner-overlay {
             display: none;
@@ -27,7 +26,6 @@
             justify-content: center;
             flex-direction: column;
         }
-
         #nav-spinner {
             width: 50px;
             height: 50px;
@@ -36,141 +34,100 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        /* Header with hamburger menu */
+        #spinner-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
         .header-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
-            padding: 10px 20px;
             width: 100%;
+            max-width: 1200px;
+            padding: 20px;
             box-sizing: border-box;
         }
-
-        h1 {
-            margin: 0;
-            color: white;
-            font-size: 32px;
-        }
-
         .hamburger-menu {
-            cursor: pointer;
-            font-size: 30px;
-            background: none;
-            border: none;
-            color: white;
-        }
-
-        .menu-dropdown {
-            display: none;
-            position: fixed;
-            top: 60px;
-            right: 20px;
             background: white;
-            border: 2px solid #007BFF;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-
-        .menu-dropdown.active {
-            display: block;
-        }
-
-        .menu-dropdown button {
-            display: block;
-            width: 100%;
-            margin: 8px 0;
-            padding: 10px;
-            cursor: pointer;
-            background: #007BFF;
-            color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        .menu-dropdown button:hover {
-            background: #0056b3;
-        }
-        
-        .designer-button {
-            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-            border: none;
-            border-radius: 25px;
-            color: white;
-            padding: 15px 35px;
             font-size: 24px;
             cursor: pointer;
-            transition: background 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            width: 200px;
-            margin-bottom: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color 0.3s;
         }
-
-        .designer-button:hover {
-            background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
+        .hamburger-menu:hover {
+            background-color: #f0f0f0;
         }
-
-        .button-container {
-            display: flex;
+        .menu-dropdown {
+            display: none;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .menu-dropdown.active {
+            display: flex;
+        }
+        .menu-dropdown button {
+            padding: 15px 30px;
+            border: none;
+            background: white;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+        .menu-dropdown button:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+        .content-text {
+            margin-top: 100px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
-    <!-- Spinner Overlay for Navigation -->
+    <!-- Spinner Overlay -->
     <div id="nav-spinner-overlay">
         <div id="nav-spinner"></div>
-        <p id="spinner-text" style="margin-top: 20px; font-size: 18px; color: #333;">Loading...</p>
+        <div id="spinner-text">Loading...</div>
     </div>
-
     <!-- Header with Hamburger Menu -->
     <div class="header-container">
-        <h1>Class 9 Results</h1>
         <button class="hamburger-menu" onclick="toggleMenu()">☰</button>
     </div>
-
-    <div class="menu-dropdown" id="menuDropdown">
+    <div class="menu-dropdown" id="menu-dropdown">
         <button onclick="navigateWithSpinner('Result.html')">Home</button>
         <button onclick="navigateWithSpinner('Class-6.html')">Class 6</button>
         <button onclick="navigateWithSpinner('Class-7.html')">Class 7</button>
         <button onclick="navigateWithSpinner('Class-8.html')">Class 8</button>
         <button onclick="logout()">Logout</button>
     </div>
-
     <!-- Main Content -->
-    <div class="button-container">
-        <button class="designer-button" onclick="navigateWithSpinner('My Graph.html')">My Graph</button>
-        <button class="designer-button" onclick="navigateWithSpinner('Compare Result.html')">Compare Result</button>
-        <button class="designer-button" onclick="navigateWithSpinner('SAT 1.html')">SAT 1</button>
-        <button class="designer-button" onclick="navigateWithSpinner('SAT 2.html')">SAT 2</button>
-        <button class="designer-button" onclick="navigateWithSpinner('Term 1.html')">Term 1</button>
-        <button class="designer-button" onclick="navigateWithSpinner('SAT 3.html')">SAT 3</button>
-        <button class="designer-button" onclick="navigateWithSpinner('SAT 4.html')">SAT 4</button>
-        <button class="designer-button" onclick="navigateWithSpinner('Term 2.html')">Term 2</button>
-        <button class="designer-button" onclick="navigateWithSpinner('Term 1 RC.html')">Term 1 RC</button>
-        <button class="designer-button" onclick="navigateWithSpinner('Other Competitions.html')">Other Competitions</button>
+    <div class="content-text">
+        <p>Class 9 results will be available soon!</p>
     </div>
-
     <script>
         function toggleMenu() {
-            document.getElementById('menuDropdown').classList.toggle('active');
+            document.getElementById('menu-dropdown').classList.toggle('active');
         }
-
         function navigateWithSpinner(url) {
             const overlay = document.getElementById('nav-spinner-overlay');
             const spinnerText = document.getElementById('spinner-text');
@@ -180,7 +137,6 @@
                 window.location.href = url;
             }, 3000);
         }
-
         function logout() {
             const overlay = document.getElementById('nav-spinner-overlay');
             const spinnerText = document.getElementById('spinner-text');
