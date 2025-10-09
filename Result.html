@@ -22,66 +22,104 @@
             width: 200px;
             margin-bottom: 20px;
         }
-
         .designer-button:hover {
             background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
         }
-
         .designer-button2 {
             background: linear-gradient(45deg, #ff5e62 0%, #ff9966 100%);
         }
-
         .designer-button2:hover {
             background: linear-gradient(45deg, #ff9966 0%, #ff5e62 100%);
         }
-
         .designer-button3 {
-            background: linear-gradient(45deg, #34e89e 0%, #0f3443 100%);
+            background: linear-gradient(45deg, #28a745 0%, #20c997 100%);
         }
-
         .designer-button3:hover {
-            background: linear-gradient(45deg, #0f3443 0%, #34e89e 100%);
+            background: linear-gradient(45deg, #20c997 0%, #28a745 100%);
         }
-
         .designer-button4 {
-            background: linear-gradient(45deg, #f7971e 0%, #ffd200 100%);
+            background: linear-gradient(45deg, #ffc107 0%, #ff9800 100%);
         }
-
         .designer-button4:hover {
-            background: linear-gradient(45deg, #ffd200 0%, #f7971e 100%);
+            background: linear-gradient(45deg, #ff9800 0%, #ffc107 100%);
         }
-
-        .designer-button:before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            transform: translate(-50%, -50%) rotate(45deg);
-            opacity: 0;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-
-        .designer-button:hover:before {
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 40px;
+        }
+        h1 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        /* Loading Spinner Styles */
+        .spinner-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            opacity: 1;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .spinner-overlay.active {
+            display: flex;
+        }
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <h1>Select Class To Proceed</h1>
-    <br><br><br>
-            <a href="Class-6.html" class="designer-button">Class 6</a>
-    <br>
-            <a href="Class-7.html" class="designer-button designer-button2">Class 7</a>
-    <br>
-            <a href="Class-8.html" class="designer-button designer-button3">Class 8</a>
-    <br>
-            <a href="Class-9.html" class="designer-button designer-button4">Class 9</a>
-        </div>
+    <div class="spinner-overlay" id="spinnerOverlay">
+        <div class="spinner"></div>
     </div>
+    
+    <div class="container">
+        <h1>Select Your Class</h1>
+        <a href="#" class="designer-button" onclick="showSpinnerAndNavigate('class6.html', event)">Class 6</a>
+        <a href="#" class="designer-button2" onclick="showSpinnerAndNavigate('class7.html', event)">Class 7</a>
+        <a href="#" class="designer-button3" onclick="showSpinnerAndNavigate('class8.html', event)">Class 8</a>
+        <a href="#" class="designer-button4" onclick="showSpinnerAndNavigate('class9.html', event)">Class 9</a>
+    </div>
+
+    <script>
+        function showSpinnerAndNavigate(url, event) {
+            event.preventDefault();
+            const spinnerOverlay = document.getElementById('spinnerOverlay');
+            spinnerOverlay.classList.add('active');
+            
+            setTimeout(function() {
+                window.location.href = url;
+            }, 3000); // 3 second delay
+        }
+    </script>
 </body>
 </html>
